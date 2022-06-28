@@ -1,5 +1,11 @@
 const bcrypt = require('bcrypt');
+const { getToken } = require('../middlewares/auth');
 const User = require('../models/user');
+const UnauthorizedError = require('../errors/unauthorized-err');
+const BadRequestError = require('../errors/bad-request-err');
+const NotFoundError = require('../errors/not-found-err');
+const ServerError = require('../errors/server-err');
+const DublicateMongooseError = require('../errors/dublicate-mongoose-err');
 
 const SALT_ROUNDS = 10;
 
