@@ -4,6 +4,8 @@ const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
 const ServerError = require('../errors/server-err');
 
+const { FORBIDDEN_ERROR_CODE, NOT_FOUND_ERROR_CODE } = require('../utils/constants');
+
 const getMovies = async (req, res, next) => {
   try {
     const movies = await Movie.find({});
