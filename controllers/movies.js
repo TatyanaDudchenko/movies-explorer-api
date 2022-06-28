@@ -33,7 +33,7 @@ const deleteMovieByID = async (req, res, next) => {
     }
     const currentUserId = req.user.id;
     if (movieById.owner.toString() !== currentUserId) {
-      next(new ForbiddenError('Нельзя удалить чужой фильм')); // 403
+      next(new ForbiddenError('Нельзя удалять фильмы других пользователей')); // 403
       return;
     }
     res.status(200).send(await movieById.deleteOne());
@@ -47,7 +47,7 @@ const deleteMovieByID = async (req, res, next) => {
       return;
     }
     if (err.statusCode === FORBIDDEN_ERROR_CODE) {
-      next(new ForbiddenError('Нельзя удалить чужой фильм')); // 403
+      next(new ForbiddenError('Нельзя удалять фильмы других пользователей')); // 403
       return;
     }
     next(new ServerError('На сервере произошла ошибка')); // 500
