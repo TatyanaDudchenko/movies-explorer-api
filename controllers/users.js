@@ -127,8 +127,6 @@ const login = async (req, res, next) => {
   }
 };
 
-
-
 module.exports = {
   createUser,
   updateUser,

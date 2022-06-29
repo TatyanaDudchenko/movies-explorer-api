@@ -18,8 +18,31 @@ const getMovies = async (req, res, next) => {
 const createMovie = async (req, res, next) => {
   try {
     const movieId = req.movie.id;
-    const { country, director, duration, year, description, image, trailerLink, thumbnail, nameRU, nameEN, } = req.body;
-    const movie = new Movie({ country, director, duration, year, description, image, trailerLink, thumbnail, nameRU, nameEN, movieId });
+    const {
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      thumbnail,
+      nameRU,
+      nameEN,
+    } = req.body;
+    const movie = new Movie({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      thumbnail,
+      nameRU,
+      nameEN,
+      movieId,
+    });
     res.status(201).send(await movie.save());
   } catch (err) {
     if (err.name === 'ValidationError') {
