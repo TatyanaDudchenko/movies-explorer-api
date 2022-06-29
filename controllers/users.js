@@ -9,6 +9,13 @@ const DublicateMongooseError = require('../errors/dublicate-mongoose-err');
 
 const SALT_ROUNDS = 10;
 
+const {
+  BAD_REQUEST_ERROR_CODE,
+  UNAUTHORIZED_ERROR_CODE,
+  NOT_FOUND_ERROR_CODE,
+  DUBLICATE_MONGOOSE_ERROR_CODE,
+} = require('../utils/constants');
+
 const getUserInfo = async (req, res, next) => {
   const { id } = req.user;
   try {
