@@ -40,10 +40,10 @@ const getUserInfo = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   try {
-    const { name } = req.body;
+    const { email, name } = req.body;
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
-      { name },
+      { email, name },
       // Передадим объект опций:
       {
         new: true, // обработчик получит на вход обновлённую запись
