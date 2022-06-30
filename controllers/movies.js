@@ -57,7 +57,7 @@ const createMovie = async (req, res, next) => {
 
 const deleteMovieByID = async (req, res, next) => {
   try {
-    const movieById = await Movie.findById(req.params.movieId);
+    const movieById = await Movie.findById(req.params._id);
     if (!movieById) {
       next(new NotFoundError('Фильм с указанным _id не найден')); // 404
       return;

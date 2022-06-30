@@ -14,7 +14,7 @@ const moviesRoutes = express.Router();
 
 moviesRoutes.get('/', isAuthtorized, getMovies);
 moviesRoutes.post('/', isAuthtorized, express.json(), validationsCreateMovie, createMovie);
-moviesRoutes.delete('/:movieId', isAuthtorized, validationsDeleteMovieByID, deleteMovieByID);
+moviesRoutes.delete('/:_id', isAuthtorized, validationsDeleteMovieByID, deleteMovieByID);
 
 module.exports = {
   moviesRoutes,
