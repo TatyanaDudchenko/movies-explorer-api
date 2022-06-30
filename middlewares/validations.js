@@ -33,7 +33,6 @@ const validationsLogin = celebrate({
 
 const validationsCreateMovie = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
     country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
@@ -41,9 +40,10 @@ const validationsCreateMovie = celebrate({
     description: Joi.string().required(),
     image: Joi.string().required().custom(validateURL),
     trailerLink: Joi.string().required().custom(validateURL),
+    thumbnail: Joi.string().required().custom(validateURL),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
-    thumbnail: Joi.string().required().custom(validateURL),
+    movieId: Joi.number().required(),
   }),
 });
 
