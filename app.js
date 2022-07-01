@@ -12,8 +12,7 @@ const app = express();
 const { login, createUser } = require('./controllers/users');
 const { validationsLogin, validationsCreateUser } = require('./middlewares/validations');
 
-const { requestLogger } = require('./middlewares/request.log');
-const { errorLogger } = require('./middlewares/error.log');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 console.log(process.env.NODE_ENV); // production
 
