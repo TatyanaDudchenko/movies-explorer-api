@@ -64,6 +64,10 @@ const updateUser = async (req, res, next) => {
       next(new NotFoundError('Пользователь с указанным _id не найден')); // 404
       return;
     }
+    if (err.code === DUBLICATE_MONGOOSE_ERROR_CODE) {
+      next(new DublicateMongooseError('Пользователь с таким email уже существует')); // 409
+      return;
+    }
     next(new ServerError('На сервере произошла ошибка')); // 500
   }
 };
