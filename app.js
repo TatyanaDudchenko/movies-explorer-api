@@ -11,6 +11,7 @@ const { routes } = require('./routes/index');
 const app = express();
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { centralizedErrorHandler } = require('./middlewares/centralizedErrorHandler');
 
 console.log(process.env.NODE_ENV); // production
 
@@ -29,12 +30,7 @@ app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors()); // обработчик ошибок celebrate
 
 // здесь обрабатываем все ошибки
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  const message = err.statusCode === 500 ? 'На сервере произошла ошибка' : err.message;
-  res.status(statusCode).send({ message });
-  next();
-});
+app.use(centralizedErrorHandler);
 
 async function main() {
   await mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/moviesdb', {
