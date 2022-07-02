@@ -6,11 +6,9 @@ const { PORT = 3000 } = process.env;
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { routes } = require('./routes/app');
+const { authRoutes } = require('./routes/auth');
 
 const app = express();
-
-const { login, createUser } = require('./controllers/users');
-const { validationsLogin, validationsCreateUser } = require('./middlewares/validations');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -24,9 +22,7 @@ app.use(requestLogger); // подключаем логгер запросов
 //   }, 0);
 // });
 
-app.post('/signin', express.json(), validationsLogin, login);
-app.post('/signup', express.json(), validationsCreateUser, createUser);
-
+app.use(authRoutes);
 app.use(routes);
 
 app.use(errorLogger); // подключаем логгер ошибок
