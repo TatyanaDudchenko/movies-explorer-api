@@ -6,8 +6,7 @@ const { PORT = 3000 } = process.env;
 const { NODE_ENV, DATA_BASE } = process.env;
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-const { routes } = require('./routes/app');
-const { authRoutes } = require('./routes/auth');
+const { routes } = require('./routes/index');
 
 const app = express();
 
@@ -23,7 +22,6 @@ app.use(requestLogger); // подключаем логгер запросов
 //   }, 0);
 // });
 
-app.use(authRoutes);
 app.use(routes);
 
 app.use(errorLogger); // подключаем логгер ошибок

@@ -8,11 +8,13 @@ const {
   validationsCreateUser,
 } = require('../middlewares/validations');
 
-const authRoutes = express.Router();
+const signinRoute = express.Router();
+const signupRoute = express.Router();
 
-authRoutes.post('/signin', express.json(), validationsLogin, login);
-authRoutes.post('/signup', express.json(), validationsCreateUser, createUser);
+signinRoute.post('/', express.json(), validationsLogin, login);
+signupRoute.post('/', express.json(), validationsCreateUser, createUser);
 
 module.exports = {
-  authRoutes,
+  signinRoute,
+  signupRoute,
 };
