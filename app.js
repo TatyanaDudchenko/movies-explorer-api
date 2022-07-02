@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 
 const { PORT = 3000 } = process.env;
+const { NODE_ENV, DATA_BASE } = process.env;
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { routes } = require('./routes/app');
@@ -38,7 +39,7 @@ app.use((err, req, res, next) => {
 });
 
 async function main() {
-  await mongoose.connect('mongodb://localhost:27017/moviesdb ', {
+  await mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/moviesdb', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
