@@ -7,6 +7,7 @@ const { NODE_ENV, DATA_BASE } = process.env;
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const { routes } = require('./routes/index');
+const { DEV_DATA_BASE } = require('./utils/constants');
 
 const app = express();
 
@@ -33,7 +34,7 @@ app.use(errors()); // обработчик ошибок celebrate
 app.use(centralizedErrorHandler);
 
 async function main() {
-  await mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/moviesdb', {
+  await mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : DEV_DATA_BASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

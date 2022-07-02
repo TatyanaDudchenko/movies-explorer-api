@@ -1,9 +1,13 @@
 const jwt = require('jsonwebtoken');
 const AuthorizationError = require('../errors/authorization-err');
 
+const {
+  DEV_SECRET,
+} = require('../utils/constants');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-const getToken = (id) => jwt.sign({ id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
+const getToken = (id) => jwt.sign({ id }, NODE_ENV === 'production' ? JWT_SECRET : DEV_SECRET, { expiresIn: '7d' });
 
 const isAuthtorized = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -17,7 +21,7 @@ const isAuthtorized = async (req, res, next) => {
   let payload;
 
   try {
-    payload = await jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
+    payload = await jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : DEV_SECRET);
   } catch (err) {
     next(new AuthorizationError('Необходима авторизация')); // 401
     return;

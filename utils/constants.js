@@ -5,6 +5,10 @@ const NOT_FOUND_ERROR_CODE = 404;
 const SERVER_ERROR_CODE = 500;
 const DUBLICATE_MONGOOSE_ERROR_CODE = 11000;
 
+const DEV_SECRET = 'dev-secret';
+
+const DEV_DATA_BASE = 'mongodb://localhost:27017/moviesdb';
+
 module.exports = {
   BAD_REQUEST_ERROR_CODE,
   UNAUTHORIZED_ERROR_CODE,
@@ -12,4 +16,6 @@ module.exports = {
   NOT_FOUND_ERROR_CODE,
   SERVER_ERROR_CODE,
   DUBLICATE_MONGOOSE_ERROR_CODE,
+  DEV_SECRET,
+  DEV_DATA_BASE,
 };
