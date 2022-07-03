@@ -77,10 +77,6 @@ const deleteMovieByID = async (req, res, next) => {
       next(new NotFoundError('Фильм с указанным _id не найден')); // 404
       return;
     }
-    if (err.statusCode === FORBIDDEN_ERROR_CODE) {
-      next(new ForbiddenError('Нельзя удалять фильмы других пользователей')); // 403
-      return;
-    }
     next(new ServerError('На сервере произошла ошибка')); // 500
   }
 };

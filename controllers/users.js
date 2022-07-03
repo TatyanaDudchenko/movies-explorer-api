@@ -26,10 +26,6 @@ const getUserInfo = async (req, res, next) => {
     }
     res.status(200).send(userById);
   } catch (err) {
-    if (err.name === 'CastError') {
-      next(new BadRequestError('Передан некорректный _id пользователя')); // 400
-      return;
-    }
     if (err.statusCode === NOT_FOUND_ERROR_CODE) {
       next(new NotFoundError('Пользователь с указанным _id не найден')); // 404
       return;
