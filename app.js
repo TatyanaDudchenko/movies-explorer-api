@@ -2,10 +2,11 @@ require('dotenv').config();
 
 const express = require('express');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 const { NODE_ENV, DATA_BASE } = process.env;
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const { routes } = require('./routes/index');
 const { DEV_DATA_BASE } = require('./utils/constants');
 
@@ -15,6 +16,12 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { centralizedErrorHandler } = require('./middlewares/centralizedErrorHandler');
 
 console.log(process.env.NODE_ENV); // production
+
+app.use(
+  cors({
+    origin: ['https://localhost:3000', 'http://localhost:3000'],
+  }),
+);
 
 app.use(requestLogger); // подключаем логгер запросов
 
