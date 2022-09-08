@@ -19,7 +19,7 @@ console.log(process.env.NODE_ENV); // production
 
 app.use(
   cors({
-    origin: ['https://localhost:3000', 'http://localhost:3000'],
+    origin: ['https://moviesexplorer.dudta.nomoredomains.sbs', 'http://moviesexplorer.dudta.nomoredomains.sbs'],
   }),
 );
 
